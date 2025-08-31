@@ -12,8 +12,11 @@ class StudentAPIClient():
     def get_students(self):
         return req.api.get(url=self._base_url)
     
-    def add_students(self, data: dict):
+    def add_student(self, data: dict):
         return req.api.post(url=self._base_url, json=data)
+
+    def get_student(self, student_id: str):
+        return req.api.get(url=f"{self._base_url}/{student_id}/")
 
 
 class PaymentAPIClient():
