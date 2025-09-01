@@ -2,6 +2,7 @@ import streamlit as st
 import streamlit_antd_components as sac
 from _pages.view_students import view_students
 from _pages.add_student import add_student
+from _pages.view_cash_registers import view_cash_registers
 from icecream import ic
 
 
@@ -28,7 +29,11 @@ with st.sidebar.container():
                 label="Situação dos Aluno (em breve)",
                 icon="exclamation-circle",
                 disabled=True
-            )
+            ),
+            sac.MenuItem(
+                label="Caixas Registradoras",
+                icon="cash-stack",
+            ),
         ],
         color="blue"
     )
@@ -47,6 +52,8 @@ with st.container():
 
     if menu == "Situação dos Aluno":
         pass
+    if menu == "Caixas Registradoras":
+        view_cash_registers()
 
 
 ic(st.session_state.get("view"))
