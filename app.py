@@ -54,6 +54,3 @@ with st.container():
         pass
     if menu == "Caixas Registradoras":
         view_cash_registers()
-
-
-ic(st.session_state.get("view"))
