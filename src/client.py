@@ -26,6 +26,9 @@ class PaymentAPIClient():
 
     def get_payments(self):
         return req.api.get(url=f"{self._base_url}/payments/")
+
+    def get_payment(self, payment_id: str):
+        return req.api.get(url=f"{self._base_url}/payments/{payment_id}/")
     
     def add_payment(self, data={}):
         return req.api.post(url=f"{self._base_url}/payments/", json=data)
@@ -61,7 +64,10 @@ class PaymentValueAPIClient():
         return req.api.get(url=f"{self._base_url}")
     
     def add_payment_value(self, data: dict={}):
-        return req.api.post(f"{self._base_url}", json=data)
+        return req.api.post(url=f"{self._base_url}", json=data)
+    
+    def delete_all_payment_values(self):
+        return req.api.delete(url=f"{self._base_url}delete/")
 
 
 class CashRegisterAPIClient():
