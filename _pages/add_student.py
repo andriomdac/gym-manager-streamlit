@@ -2,12 +2,13 @@ import streamlit as st
 import streamlit_antd_components as sac
 from src.client import StudentAPIClient
 from icecream import ic 
-
+from _pages.login import login_verifier
 
 st.set_page_config(page_title="add_student")
 client = StudentAPIClient()
 
 
+@login_verifier
 def add_student():
     with st.container():
         st.header("Matricular Aluno")

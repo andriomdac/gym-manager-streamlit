@@ -3,6 +3,8 @@ import streamlit as st
 import streamlit_antd_components as sac
 
 
+
+
 def switch_to_view(to_view: Union[str, None] = None) -> None:
 
     if to_view:
