@@ -1,21 +1,21 @@
 from re import sub
 import streamlit as st
-from src.service.login import Login
+from src.service.session import Session
+from icecream import ic
 
 
-with st.container(key="login"):
-    st.title("Login")
-    username = st.text_input("Usuário")
-    password = st.text_input("Senha")
-
-    submit = st.button("Acessar")
-    if submit:
-        client = Login()
-        st.info(client.get_login_access(username=username, password=password))
-
-
+Session().validate_session()
 if "access_token" in st.session_state:
-    client = Login()
+    st.success("access na sessão")
 
-    if not client.access_token_is_valid(access_token=st.session_state["access_token"]):
-        pass
+else:
+    with st.container():
+        st.title("Acessar")
+
+        with st.form(key="login-form"):
+            username = st.text_input("Usuário")
+            password = st.text_input("Senha", type="password")
+
+            submit = st.form_submit_button(label="Entrar")
+            if submit:
+                Session().get_login_access(username=username, password=password)
