@@ -25,16 +25,12 @@ class Session:
     def access_token_is_valid(self, access_token: str):
         client = TokenAPIClient()
         response = client.verify_token(access_token=access_token)
-        ic("antes da verificação do token")
         if response.status_code == 200:
-            ic("token válido")
             return True
-        ic(response.url)
         return False
 
-    def update_session_tokens_by(self, new_access_tk: str, new_refresh_tk: str):
+    def update_session_tokens_by(self, new_access_tk: str):
         st.session_state["access_token"] = new_access_tk
-        st.session_state["refresh_token"] = new_refresh_tk
         st.rerun()
 
     def refresh_token_session(self, refresh: str):
@@ -45,7 +41,6 @@ class Session:
         if response.status_code == 200:
             self.update_session_tokens_by(
                 new_access_tk=response.json()["access"],
-                new_refresh_tk=response.json()["refresh"],
             )
         else:
             raise SessionExpiredException("Erro ao atualizar sessão.")
