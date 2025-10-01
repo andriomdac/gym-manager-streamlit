@@ -1,7 +1,6 @@
 from src.client.token import TokenAPIClient
 import streamlit as st
 from utils.exceptions import CustomLoginException, SessionExpiredException
-from icecream import ic
 
 
 class Session:

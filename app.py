@@ -6,8 +6,8 @@ from icecream import ic
 
 Session().validate_session()
 if "access_token" in st.session_state:
-    st.success("access na sessão")
-
+    with st.sidebar:
+        st.title("Navegação")
 else:
     with st.container():
         st.title("Acessar")
