@@ -1,6 +1,5 @@
 import requests as rq
-
-BASE_URL = "http://localhost:8000/api"
+from ._base import BASE_URL
 
 
 class TokenAPIClient:

@@ -1,13 +1,24 @@
-from re import sub
 import streamlit as st
 from src.service.session import Session
-from icecream import ic
+import streamlit_antd_components as sac
 
 
 Session().validate_session()
+
 if "access_token" in st.session_state:
-    with st.sidebar:
-        st.title("Navegação")
+    with st.container():
+        with st.sidebar:
+            st.subheader("Navegação")
+            menu = sac.menu(
+                items=[
+                    sac.MenuItem(
+                        label="Painel",
+                        icon="bi bi-house-door-fill"
+                    ),
+                ],
+                color="blue"
+            )
+
 else:
     with st.container():
         st.title("Acessar")
